@@ -31,10 +31,11 @@ bool checkEqualPaths(Node * root, int depth, int& leafDepth)
         else if(leafDepth!= depth){
             return false;
         }
-        
-        return checkEqualPaths(root->left, depth + 1,leafDepth) == checkEqualPaths(root->right, depth+1, leafDepth);
+        return true;    
 
     }
+
+    return checkEqualPaths(root->left, depth + 1,leafDepth) && checkEqualPaths(root->right, depth+1, leafDepth);
 }
 
 bool equalPaths(Node * root)
