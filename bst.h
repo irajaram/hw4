@@ -631,6 +631,7 @@ BinarySearchTree<Key, Value>::getSmallestNode() const
             current= current->getLeft();
         }
     }
+    return current;
 }
 
 /**
