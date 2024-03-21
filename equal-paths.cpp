@@ -8,7 +8,7 @@ using namespace std;
 
 
 // You may add any prototypes of helper functions here
-int height(Node * root){
+/*int height(Node * root){
     if(root == NULL){
         return 0;
     }
@@ -17,7 +17,7 @@ int height(Node * root){
     int rightHeight = height(root->right);
     return 1 + max(leftHeight,rightHeight);
     }
-}
+}*/
 
 bool checkEqualPaths(Node * root, int depth, int& leafDepth)
 {
@@ -31,7 +31,7 @@ bool checkEqualPaths(Node * root, int depth, int& leafDepth)
         else if(leafDepth!= depth){
             return false;
         }
-        return true;    
+        return true;   //checking if leaf so then depth and height equal 
 
     }
 

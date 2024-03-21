@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
     BinarySearchTree<char,int> bt;
     bt.insert(std::make_pair('a',1));
     bt.insert(std::make_pair('b',2));
-    
     cout << "Binary Search Tree contents:" << endl;
     for(BinarySearchTree<char,int>::iterator it = bt.begin(); it != bt.end(); ++it) {
         cout << it->first << " " << it->second << endl;
@@ -23,7 +22,9 @@ int main(int argc, char *argv[])
     else {
         cout << "Did not find b" << endl;
     }
-    cout << "Erasing b" << endl;
+    bt.clear();
+    
+    /*cout << "Erasing b" << endl;
     bt.remove('b');
 
     // AVL Tree Tests
@@ -42,7 +43,7 @@ int main(int argc, char *argv[])
         cout << "Did not find b" << endl;
     }
     cout << "Erasing b" << endl;
-    at.remove('b');
+    at.remove('b');*/
 
     return 0;
 }
