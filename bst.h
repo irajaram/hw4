@@ -327,9 +327,9 @@ BinarySearchTree<Key, Value>::iterator::operator!=(
     if(current_ == nullptr || rhs.current_ == nullptr){
       return false;
     }
-    else{ 
-      return true;
-    }
+    // else{ 
+    //   return true;
+    // }
 
     return current_->getValue() != rhs.current_->getValue();
 
