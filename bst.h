@@ -247,7 +247,7 @@ protected:
     virtual void nodeSwap( Node<Key,Value>* n1, Node<Key,Value>* n2) ;
 
     // Add helper functions here
-    static Node<Key, Value>* successor(Node<Key, Value>* node);
+    static Node<Key, Value>* successor(Node<Key, Value>* current);
     int checkHeight(Node<Key,Value>* node);
 protected:
     Node<Key, Value>* root_;
