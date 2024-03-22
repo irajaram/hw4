@@ -500,10 +500,10 @@ template < typename Key, typename Value >
     if ((removeNode -> getLeft() != nullptr) && (removeNode -> getRight() != nullptr)) {
       Node < Key, Value > * pred = predecessor(removeNode);
       nodeSwap(pred, removeNode);
-    }
+    }  
 
     //case 1 : leaf node
-    else if ((removeNode -> getLeft() == NULL) && removeNode -> getRight() == NULL) {
+    if ((removeNode -> getLeft() == NULL) && removeNode -> getRight() == NULL) {
       if (removeNode -> getParent() == NULL) { //check if root
         delete root_;
         root_ = NULL;
@@ -529,7 +529,7 @@ template < typename Key, typename Value >
       if (removeNode == root_) /*checking if node is a root*/ {
         root_ = childNode;
         root_ -> setParent(NULL);
-        delete removeNode;
+        //delete removeNode;
       } else {
         if (parentNode -> getLeft() == removeNode) { //checking if removed is to right of parent if so setting child to the right of parent
           parentNode -> setLeft(childNode);
@@ -594,6 +594,7 @@ void BinarySearchTree<Key, Value>::clearHelper(Node<Key,Value>* node) {
   delete node;
 }
 
+
 /**
  * A helper function to find the smallest node in the tree.
  */
@@ -648,25 +649,23 @@ template < typename Key, typename Value >
 
 template < typename Key, typename Value >
   int BinarySearchTree < Key, Value > ::checkHeight(Node < Key, Value > * node) const {
-    if (root_ == nullptr) {
-      return true;
-    } else if ((root_ -> getLeft() == nullptr) && root_ -> getRight() == nullptr) {
-      return true;
+    if (node == nullptr) {
+      return 0;
     } else {
       int leftHeight = checkHeight(node -> getLeft());
-      if (leftHeight = -1) {
+      if (leftHeight == -1) {
         return -1;
       }
 
       int rightHeight = checkHeight(node -> getRight());
-      if (rightHeight = -1) {
+      if (rightHeight == -1) {
         return -1;
       }
       if (abs(leftHeight - rightHeight) > 1) {
         return -1;
       }
 
-      return std::max(leftHeight, rightHeight);
+      return std::max(leftHeight, rightHeight)+1;
     }
   }
 

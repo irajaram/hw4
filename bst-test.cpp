@@ -8,6 +8,13 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+
+    BinarySearchTree<int, double> bst;
+	  bst.insert(std::make_pair(2, 1.0));
+	  bst.insert(std::make_pair(1, 1.0));
+	  bst.insert(std::make_pair(3, 1.0));
+	  bst.remove(2);
+    bst.print();
     // Binary Search Tree tests
     // BinarySearchTree<char,int> bt;
     // bt.insert(std::make_pair('a',1));
@@ -24,32 +31,32 @@ int main(int argc, char *argv[])
     // }
     // bt.clear();
 
-    BinarySearchTree<uint16_t, uint16_t> testTree;
+    // BinarySearchTree<uint16_t, uint16_t> testTree;
 
-    testTree.insert(std::make_pair(5, 5));
-      //testTree.print();
+    // testTree.insert(std::make_pair(5, 5));
+    //   //testTree.print();
 
 
 
-    testTree.insert(std::make_pair(3, 3));
-      // testTree.print();
+    // testTree.insert(std::make_pair(3, 3));
+    //   // testTree.print();
 
-    testTree.insert(std::make_pair(1, 1));
-      // testTree.print();
+    // testTree.insert(std::make_pair(1, 1));
+    //   // testTree.print();
     
     
-    testTree.insert(std::make_pair(10, 10));
-    for(BinarySearchTree<uint16_t, uint16_t>::iterator it = testTree.begin(); it != testTree.end(); ++it) {
-        cout << it->first << " " << it->second << endl;
-    }
+    // testTree.insert(std::make_pair(10, 10));
+    // for(BinarySearchTree<uint16_t, uint16_t>::iterator it = testTree.begin(); it != testTree.end(); ++it) {
+    //     cout << it->first << " " << it->second << endl;
+    // }
 
-    testTree.print();
+    // testTree.print();
 
-      // testTree.print();
-    // testTree.insert(std::make_pair(15, 15));
+    //   // testTree.print();
+    // // testTree.insert(std::make_pair(15, 15));
 
-    // testTree.insert(std::make_pair(2, 2));
-    // testTree.insert(std::make_pair(4, 4));
+    // // testTree.insert(std::make_pair(2, 2));
+    // // testTree.insert(std::make_pair(4, 4));
 
     
 
