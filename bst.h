@@ -237,12 +237,9 @@ template < typename Key, typename Value >
 
     protected:
       // Mandatory helper functions
-      Node < Key,
-    Value > * internalFind(const Key & k) const; // TODO
-    Node < Key,
-    Value > * getSmallestNode() const; // TODO
-    static Node < Key,
-    Value > * predecessor(Node < Key, Value > * current); // TODO
+      Node < Key,Value > * internalFind(const Key & k) const; // TODO
+    Node < Key,Value > * getSmallestNode() const; // TODO
+    static Node < Key,Value > * predecessor(Node < Key, Value > * current); // TODO
     // Note:  static means these functions don't have a "this" pointer
     //        and instead just use the input argument.
 
@@ -251,12 +248,11 @@ template < typename Key, typename Value >
     virtual void nodeSwap(Node < Key, Value > * n1, Node < Key, Value > * n2);
 
     // Add helper functions here
-    static Node < Key,
-    Value > * successor(Node < Key, Value > * current);
+    static Node < Key,Value > * successor(Node < Key, Value > * current);
     int checkHeight(Node < Key, Value > * node) const;
     void clearHelper(Node<Key,Value>* node);
-    protected: Node < Key,
-    Value > * root_;
+    protected: 
+    Node < Key,Value > * root_;
     // You should not need other data members
   };
 
@@ -282,7 +278,7 @@ template < class Key, class Value >
 template < class Key, class Value >
   BinarySearchTree < Key, Value > ::iterator::iterator() {
     // TODO
-    current_(nullptr);
+    current_ = nullptr;
   }
 
 /**
@@ -449,11 +445,9 @@ const & BinarySearchTree < Key, Value > ::operator[](const Key & key) const {
  * overwrite the current value with the updated value.
  */
 template < class Key, class Value >
-  void BinarySearchTree < Key, Value > ::insert(const std::pair <
-    const Key, Value > & keyValuePair) {
-    Node < Key, Value > * newNode = new Node < Key, Value > (keyValuePair.first, keyValuePair.second, nullptr);
+  void BinarySearchTree < Key, Value > ::insert(const std::pair <const Key, Value > & keyValuePair) {
     if (root_ == nullptr) {
-      root_ = newNode;
+      root_ = new Node < Key, Value > (keyValuePair.first, keyValuePair.second, nullptr);
       return;
     }
 
@@ -467,10 +461,11 @@ template < class Key, class Value >
         current = current -> getRight();
       } else {
         current -> setValue(keyValuePair.second);
+        //delete newNode;
         return;
       }
     }
-
+    Node < Key, Value > * newNode = new Node < Key, Value > (keyValuePair.first, keyValuePair.second, nullptr);
     if (keyValuePair.first < parent -> getKey()) {
       parent -> setLeft(newNode);
     } else if (keyValuePair.first > parent -> getKey()) {
@@ -491,7 +486,7 @@ template < typename Key, typename Value >
   void BinarySearchTree < Key, Value > ::remove(const Key & key) {
     // TODO
     //Case 0 = doesn't exist in tree
-    Node < Key, Value > * removeNode = internalFind(key);
+   Node < Key, Value > * removeNode = internalFind(key);
     if (removeNode == NULL) {
       return;
     }
@@ -503,23 +498,23 @@ template < typename Key, typename Value >
     }  
 
     //case 1 : leaf node
+    Node < Key, Value > * parent = removeNode -> getParent();
     if ((removeNode -> getLeft() == NULL) && removeNode -> getRight() == NULL) {
       if (removeNode -> getParent() == NULL) { //check if root
-        delete root_;
+        //delete root_;
         root_ = NULL;
       } else {
-        Node < Key, Value > * parent = removeNode -> getParent();
         if (parent -> getLeft() == removeNode) /*checking if left child*/ {
           parent -> setLeft(NULL);
         } else if (parent -> getRight() == removeNode) /*checking if right child*/ {
           parent -> setRight(NULL);
         }
-        delete removeNode;
       }
+      delete removeNode;
     }
     //case 2: 1 child
     else if ((removeNode -> getLeft() != NULL) || (removeNode -> getRight() != NULL)) {
-      Node < Key, Value > * parentNode = removeNode -> getParent();
+      //Node < Key, Value > * parentNode = removeNode -> getParent();
       Node < Key, Value > * childNode = NULL;
       if (removeNode -> getLeft() != NULL) { //checking if parent will be point to left child of removed
         childNode = removeNode -> getLeft();
@@ -531,19 +526,22 @@ template < typename Key, typename Value >
         root_ -> setParent(NULL);
         //delete removeNode;
       } else {
-        if (parentNode -> getLeft() == removeNode) { //checking if removed is to right of parent if so setting child to the right of parent
-          parentNode -> setLeft(childNode);
-          childNode -> setParent(parentNode);
-        } else if (parentNode -> getRight() == removeNode) { //checking if removed is to left of parent if so setting child to the left of parent
-          parentNode -> setRight(childNode);
-          childNode -> setParent(parentNode);
+        if (parent -> getLeft() == removeNode) { //checking if removed is to right of parent if so setting child to the right of parent
+          parent -> setLeft(childNode);
+          childNode -> setParent(parent);
+        } else if (parent -> getRight() == removeNode) { //checking if removed is to left of parent if so setting child to the left of parent
+          parent -> setRight(childNode);
+          childNode -> setParent(parent);
         }
-        delete removeNode;
+        //delete removeNode;
       }
+      delete removeNode;
     }
 
     //case 3 = 2 children             
     //remove(pred->getKey()); //recursively remove the predecessor
+
+    //delete removeNode;
 
   }
 
