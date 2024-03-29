@@ -428,7 +428,6 @@ void AVLTree<Key, Value>:: remove(const Key& key)
       if (removeNode == this->root_) /*checking if node is a root*/ {
         this->root_ = childNode;
         this->root_ -> setParent(NULL);
-        //delete removeNode;
       } else {
         if (parent -> getLeft() == removeNode) { //checking if removed is to right of parent if so setting child to the right of parent
           parent -> setLeft(childNode);
@@ -437,37 +436,8 @@ void AVLTree<Key, Value>:: remove(const Key& key)
           parent -> setRight(childNode);
           childNode -> setParent(parent);
         }
-        //delete removeNode;
       }
     }
-
-    
-    
-
-    // AVLNode<Key, Value>* childNode = NULL;
-    // if (n -> getLeft() != NULL) { //checking if parent will be point to left child of removed
-    //     childNode = n -> getLeft();
-    // } 
-    // else if (n -> getRight() != NULL) { // checking if parent will be point to right child of removed
-    //     childNode = n -> getRight();
-    // }
-
-    // if (n == this->root_) /*checking if node is a root*/ {
-    //     this->root_ = childNode;
-    //     this->root_ -> setParent(NULL);
-    //     //delete removeNode;
-    // } 
-    // else {
-    //     if (p -> getLeft() == n) { //checking if removed is to right of parent if so setting child to the right of parent
-    //         p -> setLeft(childNode);
-    //         childNode -> setParent(p);
-    //     } 
-    //     else if (p -> getRight() == n) { //checking if removed is to left of parent if so setting child to the left of parent
-    //         p -> setRight(n);
-    //         childNode -> setParent(p);
-    //     }
-    //     
-    // } 
     delete removeNode;
     removeFix(parent,diff);   
 }
@@ -572,7 +542,7 @@ void AVLTree<Key, Value>:: removeFix(AVLNode<Key,Value>* node, int diff){
         }
     }
     else if(node->getBalance() + diff == 1){ //case 2
-        node->setBalance(11);
+        node->setBalance(1);
     }
 
     else if(node->getBalance() + diff == 0){ //case 3
